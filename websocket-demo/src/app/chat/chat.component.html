@@ -1,14 +1,68 @@
-<div>
-    <h2>WebSocket Kliens</h2>
-    <div>
-      <input [(ngModel)]="messageToSend" placeholder="Írj üzenetet" />
-      <button (click)="sendMessage()">Küldés</button>
-    </div>
+<div class="container">
+    <h1 class="text-center">WebSocket Chat</h1>
+    <form (ngSubmit)="sendMessage()">
+        <div class="row">
+            <div class="col-md-6">
+      <div>
+        <label for="name">Név:</label>
+        <input
+          id="name"
+          [(ngModel)]="name"
+          name="name"
+          placeholder="Add meg a neved"
+          required
+          class="form-control"
+        />
+      </div>
+      </div>
   
-    <div>
-      <h3>Kapott üzenetek</h3>
-      <ul>
-        <li *ngFor="let message of messages">{{ message }}</li>
-      </ul>
+      <div class="col-md-6">
+      <div>
+        <label for="message">Üzenet:</label>
+        <input
+          id="message"
+          [(ngModel)]="message"
+          name="message"
+          placeholder="Írj egy üzenetet"
+          required
+          class="form-control"
+        />
+      </div>
+      </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div>
+                  <label>Avatar:</label>
+                  <div>
+                    <img
+                      *ngFor="let avatar of avatars"
+                      [src]="avatar"
+                      [class.selected]="avatar === selectedAvatar"
+                      (click)="selectAvatar(avatar)"
+                      alt="Avatar"
+                      width="50"
+                      height="50"
+                      style="cursor: pointer; margin: 5px; border: 2px solid #ccc;"
+                    />
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center mt-4">
+      <button type="submit" class="btn btn-primary">Küldés</button>
+            </div>
     </div>
+    </form>
+  
+    <h2>Üzenetek</h2>
+    <ul>
+      <li *ngFor="let msg of messages">
+        <img [src]="msg.avatar" alt="Avatar" width="30" height="30" />
+        <strong>{{ msg.name }}:</strong> {{ msg.message }}
+      </li>
+    </ul>
   </div>
+  
