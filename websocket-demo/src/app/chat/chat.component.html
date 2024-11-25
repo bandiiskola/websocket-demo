@@ -1,0 +1,14 @@
+<div>
+    <h2>WebSocket Kliens</h2>
+    <div>
+      <input [(ngModel)]="messageToSend" placeholder="Írj üzenetet" />
+      <button (click)="sendMessage()">Küldés</button>
+    </div>
+  
+    <div>
+      <h3>Kapott üzenetek</h3>
+      <ul>
+        <li *ngFor="let message of messages">{{ message }}</li>
+      </ul>
+    </div>
+  </div>
